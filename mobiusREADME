@@ -1,0 +1,18 @@
+Code Structure
+	->Class MobiusStrip encapsulates the geometry, mesh generation, surface area, and edge length computations.
+	->Methods include:
+	->compute_coordinates(): Builds the mesh from the parametric equations.
+	->compute_surface_area(): Uses the magnitude of the cross product of tangent vectors and Simpson’s rule for double integration.
+	->compute_edge_length(): Uses np.diff and np.linalg.norm to estimate the arc length along the edges.
+	->plot(): Renders the surface using matplotlib.
+
+Surface Area Approximation
+
+The area is computed from the double integral over the surface:
+\text{Area} = \iint \| \frac{\partial \vec{r}}{\partial u} \times \frac{\partial \vec{r}}{\partial v} \| \, du \, dv
+Approximated numerically using finite differences (np.gradient) and scipy.integrate.simps.
+
+Challenges
+	->Capturing the twist of the strip correctly in the mesh.
+	->Approximating the surface integral with enough resolution (n=200 is a good balance).
+	->Ensuring numerical stability for edge length via discrete points.
